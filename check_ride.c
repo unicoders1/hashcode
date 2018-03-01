@@ -1,6 +1,11 @@
 #include <stdbool.h>
 #include "veh.h"
 
+int		get_dist(t_vector *start, t_vector *end)
+{
+	return (ABS(end->x - start->x) + ABS(end->y - start->y));
+}
+
 bool 	check_ride(t_vector *veh, t_vector *start, t_vector *end, int start_step, int end_step, int cur_step)
 {
 	int	dist_to_start = ABS(start->x - veh->x) + ABS(start->y - veh->y);
