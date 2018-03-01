@@ -31,6 +31,7 @@ typedef struct      s_list
 {
     t_ride          *ride;
     int             dist;
+    t_ride_params   *params;
     struct s_list   *next;
 }                   t_list;
 

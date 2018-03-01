@@ -27,6 +27,7 @@ typedef struct      s_list
 {
     t_ride          *ride;
     int             dist;
+    t_ride_params	*params;
     struct s_list   *next;
 }                   t_list;
 
@@ -45,7 +46,7 @@ void	dr_lst_insert(t_list *first, t_list *second, t_list *new)
 	new->next = second;
 }
 
-t_list	*dr_lst_new(t_ride *ride, int dist)
+t_list	*dr_lst_new(t_ride *ride, int dist, t_ride_params *params)
 {
 	t_list		*new;
 
@@ -53,36 +54,37 @@ t_list	*dr_lst_new(t_ride *ride, int dist)
 		return (NULL);
 	new->ride = ride;
 	new->dist = dist;
+	new->params = params;
 	new->next = NULL;
 	return (new);
 }
 
-void	adding_to_list(t_list **l_rides, t_ride *ride, int dist)
+void	adding_to_list(t_list **l_rides, t_ride *ride, int dist, t_ride_params *params)
 {
 	t_list			*ptr;
 	t_list			*ptr2 = NULL;
 
 	ptr = *l_rides;
 	if (*l_rides == NULL)
-		dr_lst_add(l_rides, dr_lst_new(ride, dist));
+		dr_lst_add(l_rides, dr_lst_new(ride, dist, params));
 	else
 	{
 		while (ptr != NULL)
 		{
 			if (dist < ptr->dist)
 			{
-				dr_lst_add(l_rides, dr_lst_new(ride, dist));
+				dr_lst_add(l_rides, dr_lst_new(ride, dist, params));
 				break ;
 			}
 			ptr2 = ptr->next;
 			if (ptr2 != NULL && dist <= ptr2->dist)
 			{
-				dr_lst_insert(ptr, ptr->next, dr_lst_new(ride, dist));
+				dr_lst_insert(ptr, ptr->next, dr_lst_new(ride, dist, params));
 				break ;
 			}
 			if (ptr->next == NULL)
 			{
-				ptr->next = dr_lst_new(ride, dist);
+				ptr->next = dr_lst_new(ride, dist, params);
 				break ;
 			}
 			ptr = ptr->next;
