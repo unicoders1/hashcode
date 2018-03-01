@@ -24,4 +24,10 @@ int				get_dist(t_vector *start, t_vector *end);
 
 void		rides_iter(t_list **l_rides, int cur_step, t_vector *veh);
 
+/*
+ * ft_list_pushback.c
+ */
+
+void	ft_list_pushback(t_list **alst, t_list *new)
+
 #endif
