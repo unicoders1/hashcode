@@ -4,10 +4,24 @@
 # include "veh_structs.h"
 
 /*
+ * global_variables
+ */
+
+t_ride *rides;
+t_info info;
+
+
+/*
  * check_ride.c
  */
 
-bool 	check_ride(t_vector *veh, t_vector *start, t_vector *end, int start_step, int end_step, int cur_step);
-int		get_dist(t_vector *start, t_vector *end);
+t_ride_params 	check_ride(t_vector *veh, t_ride *ride, int cur_step);
+int				get_dist(t_vector *start, t_vector *end);
+
+/*
+ * rides_iter.c
+ */
+
+void		rides_iter(t_list **l_rides, int cur_step, t_vector *veh);
 
 #endif

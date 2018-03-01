@@ -4,4 +4,8 @@ project(hashcode C)
 set(CMAKE_C_STANDARD 99)
 
 add_executable(hashcode
-        main.c check_ride.c)
+        veh.h
+        veh_structs.h
+        main.c
+        check_ride.c
+        marshroot.c rides_iter.c)
