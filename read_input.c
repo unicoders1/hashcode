@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 typedef struct  s_vector
 {
     int     x;
@@ -26,6 +27,14 @@ typedef struct  s_ride
     int     finish;
 }               t_ride;
 
+typedef struct      s_list
+{
+    t_ride          *ride;
+    int             dist;
+    struct s_list   *next;
+}                   t_list;
+
+void    adding_to_list(t_list **l_rides, t_ride *ride, int dist);
 
 int     main(int ac, char **argv)
 {
@@ -33,6 +42,7 @@ int     main(int ac, char **argv)
     t_info info;
     t_ride *rides = NULL;
     FILE *fp;
+    t_list *l_rides = NULL;
 
     fp = fopen(argv[1], "r");
 
@@ -42,6 +52,7 @@ int     main(int ac, char **argv)
      &rides->start.y, &rides->start.x,&rides->end.y,&rides->end.x,&rides->early,&rides->finish) != -1)
     {
         // printf("rides->start.y%d\n", rides->start.y);
+        adding_to_list(&l_rides, rides, rides->early);
         rides++;
     }
 }
